@@ -6,28 +6,25 @@ import com.store.inventory.service.InventoryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/inventory")
+@RequestMapping("/api/inventories")
 public class InventoryController {
 
     @Autowired
     InventoryService inventoryService;
 
-    @GetMapping()
-    public ResponseEntity<List<InventoryDTO>> getInventoryByType(@RequestParam("prodtype") String type) {
+    @GetMapping("/{prodType}")
+    public @ResponseBody ResponseEntity<List<InventoryDTO>> getInventoryByType(@PathVariable("prodType") String type) {
         List<InventoryDTO> list = inventoryService.getInventoryByProductType(type);
         return new ResponseEntity<List<InventoryDTO>>(list, HttpStatus.OK);
     }
 
-    @GetMapping("/accessory")
-    public ResponseEntity<List<InventoryDTO>> getInventoryByAccessoryType(@RequestParam("accstype") String type) {
+    @GetMapping("/{prodType}/accessories")
+    public @ResponseBody ResponseEntity<List<InventoryDTO>> getInventoryByAccessoryType(@PathVariable("prodType") String type) {
         List<InventoryDTO> list = inventoryService.getInventoryByProductAccessoryType(type);
         return new ResponseEntity<List<InventoryDTO>>(list, HttpStatus.OK);
 

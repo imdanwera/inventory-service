@@ -26,6 +26,7 @@ public class InventoryServiceImpl implements InventoryService {
                 .map(inventory -> inventoryDTOList.add(new InventoryDTO(inventory)))
                 .collect(Collectors.toList());
 
+        System.out.println("Inventory by ProductType - " + inventoryDTOList);
         return inventoryDTOList;
     }
 
@@ -39,6 +40,7 @@ public class InventoryServiceImpl implements InventoryService {
                 .map(inventory -> inventoryDTOList.add(new InventoryDTO(inventory)))
                 .collect(Collectors.toList());
 
+        System.out.println("Inventory by AccessoryType - " + inventoryDTOList);
         return inventoryDTOList;
     }
 }
